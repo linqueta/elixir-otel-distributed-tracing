@@ -1,5 +1,6 @@
 defmodule ZipkinRandom do
   require OpenTelemetry.Tracer
+  require OpenTelemetry.Span
 
   def hello do
     serviceA = UUID.uuid4() |> IO.inspect(label: "serviceA")
@@ -10,7 +11,10 @@ defmodule ZipkinRandom do
 
     Process.sleep(50)
 
+    OpenTelemetry.Span.set_attributes([{"file_id", UUID.uuid4()}])
+
     OpenTelemetry.Tracer.with_span "service_B_" <> serviceB do
+
       Process.sleep(50)
     end
 
