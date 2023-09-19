@@ -1,6 +1,42 @@
 version: "2.4"
 
 services:
+  alpha:
+    image: elixir:latest
+    volumes:
+      - ./alpha:/app
+    container_name: alpha
+    working_dir: /app
+    entrypoint:
+      [
+        "/bin/sh",
+        "-c",
+        "cd /app && mix deps.get && iex --sname alpha@localhost -S mix",
+      ]
+  beta:
+    image: elixir:latest
+    volumes:
+      - ./beta:/app
+    container_name: beta
+    working_dir: /app
+    entrypoint:
+      [
+        "/bin/sh",
+        "-c",
+        "cd /app && mix deps.get && iex --sname beta@localhost -S mix",
+      ]
+  charlie:
+    image: elixir:latest
+    volumes:
+      - ./charlie:/app
+    container_name: charlie
+    working_dir: /app
+    entrypoint:
+      [
+        "/bin/sh",
+        "-c",
+        "cd /app && mix deps.get && iex --sname charlie@localhost -S mix",
+      ]
   zipkin:
     image: ghcr.io/openzipkin/zipkin-slim:${TAG:-latest}
     container_name: zipkin

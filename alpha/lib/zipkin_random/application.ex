@@ -12,7 +12,7 @@ defmodule ZipkinRandom.Application do
       # {ZipkinRandom.Worker, arg}
     ]
 
-    _ = OpenTelemetry.register_application_tracer(:zipkin_random)
+    _ = OpenTelemetry.register_application_tracer(:alpha)
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
